@@ -7,6 +7,14 @@ import { Component, h, State } from '@stencil/core';
 })
 export class AppCharacters {
 
+  getRandomNum = (max: number): number => {
+    const min = Math.ceil(0);
+    const flooredMax = Math.floor(max);
+    return Math.floor(Math.random() * (flooredMax - min + 1)) + min;
+  };
+
+  @State() charArray: Array<string> = [];
+
   @State() alignment: Array<string> = [
     "Lawful Good",
     "Neutral Good",
@@ -27,7 +35,6 @@ export class AppCharacters {
     "half-orc",
     "tiefling",
     "dragonborn"
-    // exotic
   ];
 
   @State() elfType: Array<string> = [
@@ -67,9 +74,8 @@ export class AppCharacters {
   ];
 
   @State() exotic: Array<string> = [
-    // "#aasimar#",
     "firbolg",
-    /*"#element# */ "genasi",
+    "genasi",
     "goliath"
   ];
 
@@ -130,7 +136,7 @@ export class AppCharacters {
     "a wanderer who shunned civilization (Outlander)",
     "a scholar of esoteric subjects (Sage)",
     "a Sailor - or a pirate, depending on how one defines one’s terms",
-    `a professional Soldier, in the army of a ${ this.power[Math.floor(Math.random() * ((this.power.length - 1) - 0)) + 0]}`,
+    `a professional Soldier, in the army of a ${ this.power[this.getRandomNum(this.power.length - 1)]}`,
     "a street-dwelling Urchin, who struggled to survive urban life"
   ];
 
@@ -153,7 +159,7 @@ export class AppCharacters {
 
   @State() job: Array<string> =	[
     "They had signed on as an average sailor, perhaps to learn the trade",
-    `They were ${ this.officer[Math.floor(Math.random() * ((this.officer.length - 1) - 0)) + 0]}`,
+    `They were ${ this.officer[this.getRandomNum(this.officer.length - 1)]}`,
     "They were there to protect the ship in some capacity - as a marine, perhaps",
     "Actually, they were the captain of this vessel"
   ];
@@ -188,50 +194,46 @@ export class AppCharacters {
   ];
 
   @State() role: Array<string> =	[
-    `a passenger, ${ this.route[Math.floor(Math.random() * ((this.route.length - 1) - 0)) + 0]}`,
-    `a member of the crew. ${ this.job[Math.floor(Math.random() * ((this.job.length - 1) - 0)) + 0]}`,
-    `a stowaway, fleeing the agents of ${ this.power[Math.floor(Math.random() * ((this.power.length - 1) - 0)) + 0] }`,
-    `someone's protector, defending ${ this.ward[Math.floor(Math.random() * ((this.ward.length - 1) - 0)) + 0]} against the agents of ${ this.power[Math.floor(Math.random() * ((this.power.length - 1) - 0)) + 0]}`,
-    `a prisoner,${ this.durance[Math.floor(Math.random() * ((this.durance.length - 1) - 0)) + 0]}`,
-    `an agent of  ${ this.power[Math.floor(Math.random() * ((this.power.length - 1) - 0)) + 0]}, on a mission to  ${ this.task[Math.floor(Math.random() * ((this.task.length - 1) - 0)) + 0]}`,
+    `a passenger, ${ this.route[this.getRandomNum(this.route.length - 1)]}`,
+    `a member of the crew. ${ this.job[this.getRandomNum(this.job.length - 1)]}`,
+    `a stowaway, fleeing the agents of ${ this.power[this.getRandomNum(this.power.length - 1)] }`,
+    `someone's protector, defending ${ this.ward[this.getRandomNum(this.ward.length - 1)]} against the agents of ${ this.power[this.getRandomNum(this.power.length - 1)]}`,
+    `a prisoner,${ this.durance[this.getRandomNum(this.durance.length - 1)]}`,
+    `an agent of  ${ this.power[this.getRandomNum(this.power.length - 1)]}, on a mission to  ${ this.task[this.getRandomNum(this.task.length - 1)]}`,
   ];
 
-  getRandomNum = (max: number): number => {
-    return Math.floor(Math.random() * (max - 0)) + 0;
-  };
-
   buildAasimar = () => {
-    return this.aasimar[Math.floor(Math.random() * ((this.aasimar.length - 1) - 0)) + 0];
+    return this.aasimar[this.getRandomNum(this.aasimar.length - 1)];
   }
 
   buildExotic = () => {
-    const index = Math.floor(Math.random() * (this.exotic.length - 0)) + 0;
+    const index = this.getRandomNum(this.exotic.length);
     if (index === this.exotic.length) {
       return this.buildAasimar()
     }
     if (this.exotic[index] === 'genasi') {
-      return `${ this.element[Math.floor(Math.random() * ((this.element.length - 1) - 0)) + 0]} ${ this.exotic[index] }`
+      return `${ this.element[this.getRandomNum(this.element.length - 1)]} ${ this.exotic[index] }`
     }
 
     return this.exotic[index];
 
   }
-  getElf = () => `${ this.elfType[Math.floor(Math.random() * ((this.elfType.length - 1) - 0)) + 0] } elf`
-  getGnome = () => `${ this.gnomeType[Math.floor(Math.random() * ((this.gnomeType.length - 1) - 0)) + 0] } gnome`
-  getDwarf = () => `${ this.dwarfType[Math.floor(Math.random() * ((this.dwarfType.length - 1) - 0)) + 0] } dwarf`
-  getHalfling = () => `${ this.hobbitType[Math.floor(Math.random() * ((this.hobbitType.length - 1) - 0)) + 0] } halfling`
-  getDragonborn = () => `${ this.hue[Math.floor(Math.random() * ((this.hue.length - 1) - 0)) + 0] } dragonborn`
+  getElf = () => `${ this.elfType[this.getRandomNum(this.elfType.length - 1)] } elf`;
+  getGnome = () => `${ this.gnomeType[this.getRandomNum(this.gnomeType.length - 1)] } gnome`;
+  getDwarf = () => `${ this.dwarfType[this.getRandomNum(this.dwarfType.length - 1)] } dwarf`;
+  getHalfling = () => `${ this.hobbitType[this.getRandomNum(this.hobbitType.length - 1)] } halfling`;
+  getDragonborn = () => `${ this.hue[this.getRandomNum(this.hue.length - 1)] } dragonborn`;
 
-  comboMap = () => ({
+  comboMap = {
     elf: this.getElf,
     gnome: this.getGnome,
     dwarf: this.getDwarf,
     halfling: this.getHalfling,
     dragonborn: this.getDragonborn
-  });
+  };
 
   buildRace = () => {
-    const index = Math.floor(Math.random() * (this.race.length - 0)) + 0;
+    const index = this.getRandomNum(this.race.length);
     if (index === this.race.length) {
       return this.buildExotic()
     }
@@ -249,6 +251,7 @@ export class AppCharacters {
     In their previous life, they were ${ this.background[this.getRandomNum(this.background.length -1)] }.
     They came to the ship as ${ this.buildRole() }`;
   
+  addChar = () => this.charArray = [this.buildCharacter(), ...this.charArray];
 
 
   render() {
@@ -257,15 +260,10 @@ export class AppCharacters {
         <p>
           Welcome to Characters.
         </p>
-        <p>
-        { this.buildCharacter() }
-        </p>
+        <button onClick={ () => this.addChar() }>Add Character</button>
+        { this.charArray.map(current => <p>{current}</p>) }
+        
       </div>
     );
   }
 }
-
-// {
-// 	"origin": [
-//     	"This person is a #alignment# #race# #class#. In their previous life, they were #background#. They came to the ship as #role#."
-// 	],
