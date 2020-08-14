@@ -1,4 +1,4 @@
-import { AppHome } from './app-home';
+import { AppHome } from './app-dungeons';
 
 describe('app', () => {
   it('builds', () => {

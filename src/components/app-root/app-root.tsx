@@ -14,34 +14,33 @@ export class AppRoot {
         <header>
           <h1>Adrift</h1>
         </header>
-
         <main>
-        <stencil-route-link url='/adrift.github.io/'>
+        <stencil-route-link url='/'>
           <button>
             Home
           </button>
         </stencil-route-link>
-        <stencil-route-link url='/adrift.github.io/characters'>
+        <stencil-route-link url='/characters'>
           <button>
             Generate characters
           </button>
         </stencil-route-link>
-        <stencil-route-link url='/adrift.github.io/ships'>
+        <stencil-route-link url='/ships'>
           <button>
             Generate Ships
           </button>
         </stencil-route-link>
-        <stencil-route-link url='/adrift.github.io/dungeons'>
+        <stencil-route-link url='/dungeons'>
           <button>
             Generate Dungeons
           </button>
         </stencil-route-link>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route url='/adrift.github.io/' component='app-home' exact={true} />
-              <stencil-route url='/adrift.github.io/characters' component='app-characters' />
-              <stencil-route url='/adrift.github.io/ships' component='app-ship' />
-              <stencil-route url='/adrift.github.io/dungeons' component='app-dungeons' />
+              <stencil-route url='/' component='app-home' exact={true} />
+              <stencil-route url='/characters' component='app-characters' />
+              <stencil-route url='/ships' component='app-ship' />
+              <stencil-route url='/dungeons' component='app-dungeons' />
             </stencil-route-switch>
           </stencil-router>
         </main>

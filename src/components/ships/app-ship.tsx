@@ -11,7 +11,7 @@ export class AppShip {
     return (
       <div class='app-ship'>
         <p>
-          Welcome to Ships.
+          Welcome to Ships. (Coming Soon)
         </p>
       </div>
     );
