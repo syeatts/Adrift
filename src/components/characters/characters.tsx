@@ -31,18 +31,13 @@ export class AppCharacters {
     return exotic[index];
 
   }
-  buildElf = () => `${ elfType[getRandomNum(elfType.length - 1)] } elf`;
-  buildGnome = () => `${ gnomeType[getRandomNum(gnomeType.length - 1)] } gnome`;
-  buildDwarf = () => `${ dwarfType[getRandomNum(dwarfType.length - 1)] } dwarf`;
-  buildHalfling = () => `${ hobbitType[getRandomNum(hobbitType.length - 1)] } halfling`;
-  buildDragonborn = () => `${ hue[getRandomNum(hue.length - 1)] } dragonborn`;
 
   comboMap = {
-    elf: this.buildElf,
-    gnome: this.buildGnome,
-    dwarf: this.buildDwarf,
-    halfling: this.buildHalfling,
-    dragonborn: this.buildDragonborn
+    elf: () => `${ elfType[getRandomNum(elfType.length - 1)] } elf`,
+    gnome: () => `${ gnomeType[getRandomNum(gnomeType.length - 1)] } gnome`,
+    dwarf: () => `${ dwarfType[getRandomNum(dwarfType.length - 1)] } dwarf`,
+    halfling: () => `${ hobbitType[getRandomNum(hobbitType.length - 1)] } halfling`,
+    dragonborn: () => `${ hue[getRandomNum(hue.length - 1)] } dragonborn`
   };
 
   buildRace = () => {
@@ -65,7 +60,6 @@ export class AppCharacters {
     They came to the ship as ${ this.buildRole() }`;
   
   addChar = () => this.charArray = [this.buildCharacter(), ...this.charArray];
-
 
   render() {
     return (
