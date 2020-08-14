@@ -11,7 +11,7 @@ export class AppDungeons {
     return (
       <div class='app-dungeons'>
         <p>
-          Welcome to Dungeons.
+          Welcome to Dungeons. (Coming Soon)
         </p>
       </div>
     );

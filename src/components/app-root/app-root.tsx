@@ -14,7 +14,6 @@ export class AppRoot {
         <header>
           <h1>Adrift</h1>
         </header>
-
         <main>
         <stencil-route-link url='/'>
           <button>
