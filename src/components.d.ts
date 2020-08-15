@@ -18,7 +18,9 @@ export namespace Components {
     }
     interface SelectBox {
         "getSelection": () => Promise<string>;
-        "selectOpts": Array<string>;
+        "selectId": string;
+        "selectOpts": Array<string | Function>;
+        "value": string;
     }
     interface StringBuilder {
         "selectOpts": Array<string>;
@@ -90,7 +92,9 @@ declare namespace LocalJSX {
     interface AppShip {
     }
     interface SelectBox {
-        "selectOpts"?: Array<string>;
+        "selectId"?: string;
+        "selectOpts"?: Array<string | Function>;
+        "value"?: string;
     }
     interface StringBuilder {
         "selectOpts"?: Array<string>;

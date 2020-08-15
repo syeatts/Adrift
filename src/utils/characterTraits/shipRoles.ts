@@ -1,6 +1,6 @@
 import { getRandomNum } from '../utilityFunctions'
 
-const officer: Array<string> =	[
+export const officer: Array<string> =	[
     "the first mate",
     "the bosun",
     "the navigator (quartermaster)",
@@ -8,7 +8,7 @@ const officer: Array<string> =	[
     "the cook"
 ];
 
-const route: Array<string> = [
+export const route: Array<string> = [
     "returning home",
     "embarking on a pilgrimage",
     "touring the world for pleasure",
@@ -17,14 +17,14 @@ const route: Array<string> = [
     "exiled from their homeland"
 ];
 
-const job: Array<Function> =	[
+export const job: Array<Function> =	[
     () => "They had signed on as an average sailor, perhaps to learn the trade",
     () => `They were ${ officer[getRandomNum(officer.length - 1)] }`,
     () => "They were there to protect the ship in some capacity - as a marine, perhaps",
     () => "Actually, they were the captain of this vessel"
   ];
 
-const power: Array<string> =	[
+export const power: Array<string> =	[
     "a kingdom or nation",
     "a church/cult",
     "a dangerous spirit",
@@ -57,7 +57,7 @@ export const background: Array<Function> =  [
     () => "a street-dwelling Urchin, who struggled to survive urban life"
 ];
 
-const ward: Array<string> =	[
+export const ward: Array<string> =	[
     "a spoiled young aristocrat",
     "a religious figure",
     "a wealthy merchant",
@@ -66,7 +66,7 @@ const ward: Array<string> =	[
     "someone wrongfully accused of a crime"
 ];
 
-const durance: Array<string> =	[
+export const durance: Array<string> =	[
     "wrongfully convicted of another's crime",
     "having violated a serious taboo of their home culture",
     "put in chains for outstanding debts",
@@ -77,7 +77,7 @@ const durance: Array<string> =	[
     "whose beliefs angered the rulers of a kingdom or nation"
 ];
 
-const task: Array<string> = [
+export const task: Array<string> = [
     "steal a mysterious object of power",
     "assassinate someone on board",
     "sabotage the ship",
@@ -91,6 +91,6 @@ export const role: Array<Function> =	[
     () => `a member of the crew. ${ job[getRandomNum(job.length - 1)]()}`,
     () => `a stowaway, fleeing the agents of ${ power[getRandomNum(power.length - 1)] }`,
     () => `someone's protector, defending ${ ward[getRandomNum(ward.length - 1)]} against the agents of ${ power[getRandomNum(power.length - 1)]}`,
-    () => `a prisoner,${ durance[getRandomNum(durance.length - 1)]}`,
-    () => `an agent of  ${ power[getRandomNum(power.length - 1)]}, on a mission to  ${ task[getRandomNum(task.length - 1)]}`,
+    () => `a prisoner, ${ durance[getRandomNum(durance.length - 1)]}`,
+    () => `an agent of ${ power[getRandomNum(power.length - 1)]}, on a mission to  ${ task[getRandomNum(task.length - 1)]}`,
 ];
