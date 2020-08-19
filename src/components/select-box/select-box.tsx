@@ -9,7 +9,11 @@ export class SelectBox {
 
     @Element() el;
 
-    @Prop() selectOpts: Array<string>
+    @Prop() selectOpts: Array<string | Function>;
+
+    @Prop() value: string ='random';
+
+    @Prop() selectId: string;
 
     select!: HTMLSelectElement;
 
@@ -17,11 +21,23 @@ export class SelectBox {
         return this.select.value;
     }
 
+    disconnectedCallBack() {
+        console.log('removed');
+    }
+
     render() {
         return (
             <div class='string-builder'>
-                <select ref={ (el) => this.select = el as HTMLSelectElement }>
-                    { this.selectOpts.map(curr => <option value={curr}>{curr}</option> )}
+                <label htmlFor={this.selectId}>{this.selectId}</label>
+                <select id={this.selectId} ref={ (el) => this.select = el as HTMLSelectElement }>
+                    <option value='random'>{'random'}</option>
+                    {
+                        this.selectOpts.map(curr =>
+                            <option value={typeof curr === 'string' ? curr : curr()}>
+                                {typeof curr === 'string' ? curr : curr()}
+                            </option>
+                        )
+                    }
                 </select>
             </div>
         );

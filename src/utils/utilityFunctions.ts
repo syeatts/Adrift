@@ -5,4 +5,6 @@ const getRandomNum = (max: number): number => {
     return randomized;
 };
 
-export { getRandomNum };
+const capitalizeFirstLetter = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+
+export { getRandomNum, capitalizeFirstLetter };

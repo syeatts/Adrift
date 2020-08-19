@@ -52,21 +52,20 @@ export const racialMods = {
         "gray (duergar)",
         "hill"
     ],
-    hobbitType: [
+    halflingType: [
         "stout",
         "lightfoot"
-    ]
+    ],
+    dragonbornType: [
+        "red",
+        "blue",
+        "green",
+        "white",
+        "black",
+        "gold",
+        "silver",
+        "brass",
+        "bronze",
+        "copper"
+      ]
 }
-
-export const hue: Array<string> = [
-    "red",
-    "blue",
-    "green",
-    "white",
-    "black",
-    "gold",
-    "silver",
-    "brass",
-    "bronze",
-    "copper"
-  ];
