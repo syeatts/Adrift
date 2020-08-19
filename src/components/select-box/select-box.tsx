@@ -21,13 +21,23 @@ export class SelectBox {
         return this.select.value;
     }
 
+    disconnectedCallBack() {
+        console.log('removed');
+    }
+
     render() {
         return (
             <div class='string-builder'>
                 <label htmlFor={this.selectId}>{this.selectId}</label>
                 <select id={this.selectId} ref={ (el) => this.select = el as HTMLSelectElement }>
-                    <option value={this.value}>{this.value}</option>
-                    { this.selectOpts.map(curr => <option value={typeof curr === 'string' ? curr : curr()}>{typeof curr === 'string' ? curr : curr()}</option> )}
+                    <option value='random'>{'random'}</option>
+                    {
+                        this.selectOpts.map(curr =>
+                            <option value={typeof curr === 'string' ? curr : curr()}>
+                                {typeof curr === 'string' ? curr : curr()}
+                            </option>
+                        )
+                    }
                 </select>
             </div>
         );
