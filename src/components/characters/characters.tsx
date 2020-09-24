@@ -42,7 +42,7 @@ export class AppCharacters {
     return selection.then(async (res) => {
       if (res === 'random') {
         const index = getRandomNum(race.length);
-        if ( index === race.length) {
+        if (index === race.length) {
           return buildExotic(exotic)
         } else {
           return this.getComboRace(race[index]);
