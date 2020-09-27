@@ -23,7 +23,7 @@ export namespace Components {
         "max": number;
         "mode": string;
         "name": string;
-        "petals": Array<string>;
+        "petals": Array<number>;
         "start": number;
         "terminal": number;
     }
@@ -123,7 +123,7 @@ declare namespace LocalJSX {
         "max"?: number;
         "mode"?: string;
         "name"?: string;
-        "petals"?: Array<string>;
+        "petals"?: Array<number>;
         "start"?: number;
         "terminal"?: number;
     }
