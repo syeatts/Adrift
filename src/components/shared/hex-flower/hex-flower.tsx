@@ -109,7 +109,7 @@ export class HexFlower {
         this.activeRules.forEach((rule, idx) => {
             this.ResultSet = {
                 ...this.ResultSet,
-                ...{[rule]: generate(this.currentRoll, this.max, [this.start], this.hexArray[this.start - 1], this.config, this.start)}
+                ...{[rule]: generate(this.currentRoll, this.max, [this.start], this.currentHex, this.config, this.start)}
             };
             if (idx === 0) {
                 this.ResultSet[rule].forEach((result, idx) => {
