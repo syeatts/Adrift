@@ -19,7 +19,11 @@ export namespace Components {
     interface AppShip {
     }
     interface HexFlower {
+        "SeaRules": Array<string>;
+        "TerrainRules": Array<string>;
+        "WeatherRules": Array<string>;
         "config": string;
+        "hexArray": { value: number; lt: number; rt: number; tt: number; lb: number; rb: number; bb: number; }[];
         "max": number;
         "mode": string;
         "name": string;
@@ -119,7 +123,11 @@ declare namespace LocalJSX {
     interface AppShip {
     }
     interface HexFlower {
+        "SeaRules"?: Array<string>;
+        "TerrainRules"?: Array<string>;
+        "WeatherRules"?: Array<string>;
         "config"?: string;
+        "hexArray"?: { value: number; lt: number; rt: number; tt: number; lb: number; rb: number; bb: number; }[];
         "max"?: number;
         "mode"?: string;
         "name"?: string;

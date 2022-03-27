@@ -1,0 +1,18 @@
+<svg class="icon"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.1 145" >
+
+    <g id="period-cir">
+        <path fill="currentColor" stroke-width="0" d="M96.5,141.7c0,3.9-3.1,7-7,7s-7-3.1-7-7s3.1-7,7-7C93.4,134.6,96.5,137.8,96.5,141.7z"/>
+        <path fill="currentColor" stroke-width="0" d="M78.2,126.7c0,3.9-3.1,7-7,7s-7-3.1-7-7c0-3.9,3.1-7,7-7S78.2,122.8,78.2,126.7z"/>
+        <path fill="currentColor" stroke-width="0" d="M110.6,120.5c0,3.9-3.1,7-7,7s-7-3.1-7-7s3.1-7,7-7S110.6,116.6,110.6,120.5z"/>
+    
+    </g>
+    <g id="period-anm">
+        <path stroke-linecap="round" d="M30.8,24.7h118.3 M117.3,71.2l9.7-6.7c0.7-0.4,1.1-1.1,1.1-1.9V24.7H50v37.8"/>
+        <path stroke-linecap="round" d="M149.4,153.3H30.6 M75.5,90.7l-23.1,21.2c-1.6,1.4-2.4,3.4-2.4,5.6v35.9h78.1V113"/>
+        <g id="period-line">
+            <path stroke-linecap="round" d="M50,62.5l40,44.2"/>
+            <path stroke-linecap="round" d="M128.1,111.7L95.2,73.4"/>
+        </g>
+    </g>
+
+</svg>

@@ -1,10 +1,21 @@
 header {
-  background: #5851ff;
+  background: grey/*rgba(255, 0, 21, 0.555)*/;
   color: white;
   height: 56px;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+button {
+  background-color: rgba(255, 0, 0, 0.705);
+  border: none;
+  border-right: 5px solid black;
+  color: white;
+
+}
+button:hover {
+  background-color: blue;
 }
 
 h1 {

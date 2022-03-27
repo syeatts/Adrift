@@ -11,9 +11,9 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <header>
+        {/* <header>
           <h1>Adrift</h1>
-        </header>
+        </header> */}
         <main>
         <stencil-route-link url='/'>
           <button>

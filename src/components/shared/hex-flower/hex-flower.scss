@@ -1,4 +1,11 @@
 .hex-flower {
+    div {
+        &.controls {
+            max-width: 25%;
+            border: 2px solid black;
+            height: 85%;
+        }
+    }
     $block: '.hex-grid';
 
     @mixin grid-item($amount) {
@@ -24,50 +31,7 @@
         }
     }
 
-    // #{$block} {
-    //     display: flex;
-    //     justify-content: center;
-
-    //     &__list {
-    //         --amount: 5;
-    //         position: relative;
-    //         padding: 0;
-    //         margin: 0;
-    //         list-style-type: none;
-    //         display: grid;
-    //         grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
-    //         grid-gap: 2.5rem 5rem;
-    //     }
-
-    //     &__item {
-    //         position: relative;
-    //         grid-column: 1 / span 3;
-    //         grid-row: calc(var(--counter) + var(--counter)) / span 2;
-    //         filter: drop-shadow(0 0 10px rgba(#444, .08));
-    //         height: 0;
-    //         padding-bottom: 90%;
-    //     }
-
-    //     &__content {
-    //         position: absolute;
-    //         height: 75%;
-    //         width: 75%;
-    //         font-size: 1.125rem;
-    //         color: #111111;
-    //         background-color: white;
-    //         clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
-    //         display: flex;
-    //         flex-direction: column;
-    //         justify-content: center;
-    //         align-items: center;
-    //         padding: 2rem 25%;
-    //         text-decoration: none;
-    //         text-align: center;
-    //         transition: transform .24s ease-out;
-    //     }
-    // }
-
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 200px) {
         #{$block} {
             &__list {
                 --amount: 5;
@@ -80,75 +44,35 @@
         }
     }
 
-    @media screen and (min-width: 1120px) and (max-width: 1439px) {
-        #{$block} {
-            &__list {
-                --amount: 4;
-                --counter: 1;
-            }
-
-            &__item {
-                @include grid-item(4);
-            }
-        }
-    }
-
-    @media screen and (min-width: 840px) and (max-width: 1119px) {
-        #{$block} {
-            &__list {
-                --amount: 3;
-                --counter: 1;
-                grid-gap: .5rem 3rem;
-            }
-
-            &__item {
-                @include grid-item(3);
-            }
-        }
-    }
-
-    @media screen and (min-width: 480px) and (max-width: 839px) {
-        #{$block} {
-            &__list {
-                --amount: 2;
-                --counter: 1;
-                grid-gap: 1.5rem 3rem;
-            }
-
-            &__item {
-                @include grid-item(2);
-            }
-        }
-    }
-
-    @media screen and (max-width: 479px) {
-        #{$block} {
-            &__list {
-                --amount: 1;
-                grid-gap: 1.5rem 3rem;
-            }
-        }
-    }
     .hex-grid {
         background-color: black;
         display: flex;
         justify-content: center;
-        border: 2px solid black;
-        padding: 5%;
+        padding: 10% 0;
+        width: 100%;
         position: absolute;
-        width: 50%;
-        right: 5%;
-        top: 55px;
+        padding-bottom: 50px;
+        color: white;
+        button {
+            position: absolute;
+            top: 25px;
+            &.left {
+                left: 25px;
+            }
+            &.right {
+                right: 25px;
+            }
+        }
 
         &__list {
             --amount: 5;
             position: relative;
-            padding: 0;
+            padding-bottom: 10%;
             margin: 0;
             list-style-type: none;
             display: grid;
             grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
-            grid-gap: 2.5rem 5rem;
+            grid-gap: 2.5rem 2rem;
         }
 
         &__item {
@@ -157,7 +81,7 @@
             grid-row: calc(var(--counter) + var(--counter)) / span 2;
             filter: drop-shadow(0 0 10px rgba(#444, .08));
             height: 0;
-            padding-bottom: 90%;
+            padding-bottom: 25%;
             &:first-of-type {
                 grid-column: 5 / span 3;
                 grid-row: 1 / span 2;
@@ -166,9 +90,9 @@
 
         &__content {
             position: absolute;
-            height: 75%;
+            height: 70%;
             width: 75%;
-            font-size: 1.125rem;
+            font-size: small;
             color: #111111;
             background-color: white;
             clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
@@ -180,9 +104,33 @@
             text-decoration: none;
             text-align: center;
             transition: transform .24s ease-out;
-            p {
-                &.rolled {
-                    color: red;
+            &.current {
+                background-color: red;
+                color: white;
+            }
+            span {
+                &.secondary {
+                    font-size: xx-small;
+                }
+            }
+        }
+        div {
+            &.rules {
+                h4 {
+                    text-align: center;
+                }
+            }
+            &.results {
+                max-height: 520px;
+                min-width: 260px;
+                overflow: auto;
+                h4 {
+                    text-align: center;
+                }
+                p {
+                    margin: 0 50px;
+                    border-bottom: 1px solid grey;
+                    width: 160px;
                 }
             }
         }

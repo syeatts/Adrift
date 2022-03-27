@@ -1,14 +1,15 @@
 import { Component, h, Prop, Element, State } from '@stencil/core';
+import { generate, rollOnce } from '../../../utils/hexGenerator';
 
-interface Hex {
-    value: number;
-    lt: number;
-    rt: number;
-    tt: number;
-    lb: number;
-    rb: number;
-    bb: number;
-}
+// interface Hex {
+//     value: number;
+//     lt: number;
+//     rt: number;
+//     tt: number;
+//     lb: number;
+//     rb: number;
+//     bb: number;
+// }
 
 @Component({
   tag: 'hex-flower',
@@ -17,7 +18,9 @@ interface Hex {
 })
 export class HexFlower {
 
-    hexArray: Array<Hex> = [
+    @Element() el;
+
+    @Prop() hexArray = [
         { value: 1, lt: 2, rt: 3, tt: 5, lb: 6, rb: 4, bb: 1 },
         { value: 2, lt: 4, rt: 5, tt: 7, lb: 11, rb: 1, bb: 17 },
         { value: 3, lt: 5, rt: 6, tt: 8, lb: 1, rb: 9, bb: 18 },
@@ -38,9 +41,10 @@ export class HexFlower {
         { value: 18, lt: 19, rt: 9, tt: 3, lb: 15, rb: 16, bb: 13 },
         { value: 19, lt: 19, rt: 19, tt: 19, lb: 17, rb: 18, bb: 15 }
     ];
-
-    @Element() el;
-
+     
+    @Prop() TerrainRules: Array<string> = [ 'Plains', 'Plains', 'Plains', 'Arid Plains', 'Plains', 'Sparse Forest', 'Arid Plains', 'Sparse Forest', 'Desert', 'Special Feature', 'Forest', 'Desert', 'Forest', 'Desert Hills', 'Hills', 'Forest Hills', 'Hills', 'Hills', 'Mountain']
+    @Prop() SeaRules: Array<string> = ['Open Sea', 'Open Sea', 'Open Sea', 'Shallow Sea', 'Open Sea', 'Land Sighting', 'Shallow Sea', 'Land Sighting', 'Reefs', 'Special Event', 'Rough Shallows', 'Reefs', 'Rough Shallows', 'Foggy Reef','Large Waves', 'Choppy Seas', 'Large Waves', 'Large Waves', 'Disaster!']
+    @Prop() WeatherRules: Array<string> = ['Mostly Cloudy', 'Partly Cloudy', 'Cloudy', 'Some Showers', 'Mostly Cloudy', 'Showers', 'Partly Cloudy', 'Showers', 'Sunny', 'Some Showers', 'Rainy', 'Sunny', 'Storm Clouds', 'Sunny', 'Mostly Cloudy', 'Heavy Rain', 'Scorcher', 'Thunder Storms', 'Extreme Weather']
     @Prop() name: string = 'Test';
     @Prop() config: string = '2D6'
     @Prop() petals: Array<number> = [3, 1, 2, 4, 6, 8, 5, 7, 9, 11, 13, 10, 12, 14, 16, 18, 15, 17, 19,]
@@ -51,8 +55,22 @@ export class HexFlower {
 
     @State() currentRoll = this.max;
     @State() currentHex = this.hexArray[this.start - 1];
+    @State() secondaryHex = this.hexArray[this.start - 1];
     @State() generatedArray = [this.currentHex.value];
-    
+    @State() secondaryArray = [this.currentHex.value];
+    @State() RuleSets = {
+        Land: this.TerrainRules,
+        Weather: this.WeatherRules,
+        Sea: this.SeaRules
+    }
+    @State() ResultSet = {
+        Land: [this.start],
+        Weather: [this.start],
+        Sea: [this.start]
+    }
+    @State() currentRules = 'Land'
+    @State() secondaryRules = ''
+    @State() activeRules = ['Land']
 
     rollMap = {
         2: 'rt',
@@ -67,67 +85,123 @@ export class HexFlower {
         11: 'lt',
         12: 'tt'
     }
-    
 
-    findAll = (val) => {
-        return this.generatedArray.reduce((agg: Array<number>, curr, index) => {
-            return curr === val ? [...agg, ...[index]] : agg
-        }, []);
-    }
 
-    randomizedRoll = (max) => Math.floor(Math.random() * max) + 1;
+    // randomizedRoll = (max) => Math.floor(Math.random() * max) + 1;
 
-    twoDSix = () => this.randomizedRoll(6) + this.randomizedRoll(6);
+    // twoDSix = () => this.randomizedRoll(6) + this.randomizedRoll(6);
 
-    roll = (config) => {
-        const configurations = {
-            '2D6': this.twoDSix
-        }
-        const value = configurations[config]();
-        console.log('Roll:', value, 'current', this.currentHex)
-        return value;
-    }
+    // roll = (config) => {
+    //     const configurations = {
+    //         '2D6': this.twoDSix
+    //     }
+    //     const value = configurations[config]();
+    //     return value;
+    // }
 
     
-    calculateHex = (roll) => {
-        const result = this.rollMap[roll];
-        return this.hexArray[this.currentHex[result] - 1];
-    }
+    // calculateHex = (roll, hex) => {
+    //     const result = this.rollMap[roll];
+    //     return this.hexArray[hex[result] - 1];
+    // }
 
     generate = () => {
-        if (this.currentRoll > 1) {
-            if (this.currentRoll === this.max) {
-                this.generatedArray.length = 1;
-                this.currentHex = this.hexArray[this.start - 1];
+        this.activeRules.forEach((rule, idx) => {
+            this.ResultSet = {
+                ...this.ResultSet,
+                ...{[rule]: generate(this.currentRoll, this.max, [this.start], this.hexArray[this.start - 1], this.config, this.start)}
+            };
+            if (idx === 0) {
+                this.ResultSet[rule].forEach((result, idx) => {
+                    setTimeout(() => this.currentHex = this.hexArray[result - 1], 25 * idx);
+                    
+                });
             }
-            this.currentHex = this.calculateHex(this.roll(this.config));
-            this.generatedArray = [ ...this.generatedArray, ...[this.currentHex.value]];
-            this.currentRoll = this.currentRoll - 1;
-            this.generate();
-        }
-        this.currentRoll = this.max;
+            
+            
+        })
+    }
 
+    rollOnce = () => {
+        this.activeRules.forEach((rule, idx) => {
+            const currentRules = this.ResultSet[rule];
+            const lastRule = this.ResultSet[rule].length - 1;
+            const newHex = rollOnce(this.hexArray[currentRules[lastRule] - 1], this.config);
+            console.log(newHex);
+            if (idx === 0) {
+                this.currentHex = newHex;
+            }
+            this.ResultSet[rule] = [ ...this.ResultSet[rule], ...[newHex.value]]
+            
+        })
+    }
+
+    clear = () => {
+        this.ResultSet = {
+            Land: [this.start],
+            Weather: [this.start],
+            Sea: [this.start]
+        }
+        this.currentHex = this.hexArray[this.start - 1];
+    }
+
+    resetResults = (event) => {
+        this.currentHex = this.hexArray[this.start - 1];
+        this.secondaryHex = this.hexArray[this.start - 1];
+        this.generatedArray = [this.currentHex.value];
+        this.secondaryArray = [this.secondaryHex.value];
+        const value = (event.target as HTMLSelectElement).value
+        const splitRule = value.split(' & ');
+        this.currentRules = splitRule.length === 1 ? value : splitRule[0];
+        this.secondaryRules = splitRule.length === 1 ? '' : splitRule[1];
+
+    }
+
+    setRules = (event) => {
+        this.activeRules = (event.target as HTMLSelectElement).value.split(' & ');
+        this.clear();
     }
 
     render() {
         return (
             <div class='hex-flower'>
-                <h1> I'm the Hex Flower for {this.name}</h1>
-                <h2>Using the {this.config} ruleset</h2>
-                <button onClick = {() => this.generate()}>Generate</button>
-                <p>{ this.generatedArray.map(curr => `${curr},` ) }</p>
                 <div class="hex-grid">
+                    <button class="left" onClick = {() => this.generate()}>Generate</button>
+                    <button onClick = {() => this.rollOnce()}>Roll</button>
+                    <button class="right" onClick = {() => this.clear()}>Clear</button>
+                    <div class="rules">
+                        <h4>Rule Set</h4>
+                        <select onChange={e => this.setRules(e)}>
+                            {Object.keys(this.RuleSets).map(curr => <option value={curr}>{curr}</option>)}
+                            <option>Land & Weather</option>
+                            <option>Weather & Land</option>
+                            <option>Sea & Weather</option>
+                            <option>Weather & Sea</option>
+                        </select>
+                    </div>
                     <ul class="hex-grid__list">
                         { [...this.petals].reverse().map(curr => 
                         <li class="hex-grid__item">
-                            <div class="hex-grid__content">
-                                <p class={this.generatedArray.includes(curr) ? 'rolled' : 'unrolled'}>{curr}</p>
-                                Turns:
-                                {this.findAll(curr).map(current => ` ${ current === 0 ? 'Start' : current + 1 }, `)}
+                            <div class={`hex-grid__content ${this.currentHex.value === curr ? 'current' : ''}`}>
+                                {this.activeRules.map((rule, idx) => idx > 0
+                                    ? <span class="secondary"><hr/>{this.RuleSets[rule][curr - 1]}</span>
+                                    : <span>{this.RuleSets[rule][curr - 1]}</span>
+                                )}
                             </div>
+                            
                         </li>
                         )}
                     </ul>
+                    {this.activeRules.map(rule => {
+                        return <div class="results">
+                            <h4>{rule} Results</h4>
+                            { this.ResultSet[rule].map((curr, idx) => {
+                                return <p>{`${idx + 1}: ${this.RuleSets[rule][curr - 1]}`}</p>
+                                })
+                            }
+                        </div>
+                        })
+                    }
                 </div>
             </div>
         );

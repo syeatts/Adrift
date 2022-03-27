@@ -1,7 +1,7 @@
 export const traitMap: Object = {
     Soldier: `soldier-background-type`,
     'ward-power': 'ward-power',
-    ward: `ward`,
+    ward: 'ward',
     route: 'route',
     'stowaway-power': 'stowaway-power',
     durance: 'durance',
@@ -42,10 +42,10 @@ export const route: Array<string> = [
 ];
 
 export const job: Array<Function> =	[
-    () => 'They had signed on as an average sailor, perhaps to learn the trade',
-    () => `They were #officer#`,
-    () => 'They were there to protect the ship in some capacity - as a marine, perhaps',
-    () => 'Actually, they were the captain of this vessel'
+    () => 'They had signed on as an average sailor, perhaps to learn the trade.',
+    () => `They were #officer#.`,
+    () => 'They were there to protect the ship in some capacity - as a marine, perhaps.',
+    () => 'Actually, they were the captain of this vessel.'
   ];
 
 export const power: Array<string> =	[
@@ -64,7 +64,7 @@ export const background: Array<Function> =  [
     () => 'a popular Entertainer',
     () => 'attached to the court of a royal house (Courtier)',
     () => 'a watchman in a large city',
-    () => 'a finder of… ‘lost’ persons (Bounty Hunter)',
+    () => 'a finder of… \"lost\" persons (Bounty Hunter)',
     () => 'an agent of a political faction',
     () => 'on a long journey, far from their native land (Far Traveller)',
     () => 'an artisan (or merchant) and member in good standing of a guild',
@@ -76,7 +76,7 @@ export const background: Array<Function> =  [
     () => 'a knight who belonged to a brotherhood',
     () => 'a wanderer who shunned civilization (Outlander)',
     () => 'a scholar of esoteric subjects (Sage)',
-    () => 'a Sailor - or a pirate, depending on how one defines one’s terms',
+    () => 'a Sailor - or a pirate, depending on how one defines one\'s terms',
     () => `a professional Soldier, in the army of #power#`,
     () => 'a street-dwelling Urchin, who struggled to survive urban life'
 ];

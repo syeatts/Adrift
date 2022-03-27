@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "iterativesolutions"
+  },
+  "targets": {
+    "iterativesolutions": {
+      "hosting": {
+        "scott-rpg": [
+          "scott-rpg"
+        ]
+      }
+    }
+  }
+}
