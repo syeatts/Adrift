@@ -1,9 +1,9 @@
-.app-characters {
+.app-home {
   padding: 10px;
 }
 
 button {
-  background: rgba(255, 0, 0, 0.705);;
+  background: #5851ff;
   color: white;
   margin: 8px;
   border: none;

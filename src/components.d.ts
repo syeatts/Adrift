@@ -10,11 +10,26 @@ export namespace Components {
     }
     interface AppDungeons {
     }
+    interface AppHex {
+    }
     interface AppHome {
     }
     interface AppRoot {
     }
     interface AppShip {
+    }
+    interface HexFlower {
+        "SeaRules": Array<string>;
+        "TerrainRules": Array<string>;
+        "WeatherRules": Array<string>;
+        "config": string;
+        "hexArray": { value: number; lt: number; rt: number; tt: number; lb: number; rb: number; bb: number; }[];
+        "max": number;
+        "mode": string;
+        "name": string;
+        "petals": Array<number>;
+        "start": number;
+        "terminal": number;
     }
     interface SelectBox {
         "getSelection": () => Promise<string>;
@@ -40,6 +55,12 @@ declare global {
         prototype: HTMLAppDungeonsElement;
         new (): HTMLAppDungeonsElement;
     };
+    interface HTMLAppHexElement extends Components.AppHex, HTMLStencilElement {
+    }
+    var HTMLAppHexElement: {
+        prototype: HTMLAppHexElement;
+        new (): HTMLAppHexElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
@@ -58,6 +79,12 @@ declare global {
         prototype: HTMLAppShipElement;
         new (): HTMLAppShipElement;
     };
+    interface HTMLHexFlowerElement extends Components.HexFlower, HTMLStencilElement {
+    }
+    var HTMLHexFlowerElement: {
+        prototype: HTMLHexFlowerElement;
+        new (): HTMLHexFlowerElement;
+    };
     interface HTMLSelectBoxElement extends Components.SelectBox, HTMLStencilElement {
     }
     var HTMLSelectBoxElement: {
@@ -73,9 +100,11 @@ declare global {
     interface HTMLElementTagNameMap {
         "app-characters": HTMLAppCharactersElement;
         "app-dungeons": HTMLAppDungeonsElement;
+        "app-hex": HTMLAppHexElement;
         "app-home": HTMLAppHomeElement;
         "app-root": HTMLAppRootElement;
         "app-ship": HTMLAppShipElement;
+        "hex-flower": HTMLHexFlowerElement;
         "select-box": HTMLSelectBoxElement;
         "string-builder": HTMLStringBuilderElement;
     }
@@ -85,11 +114,26 @@ declare namespace LocalJSX {
     }
     interface AppDungeons {
     }
+    interface AppHex {
+    }
     interface AppHome {
     }
     interface AppRoot {
     }
     interface AppShip {
+    }
+    interface HexFlower {
+        "SeaRules"?: Array<string>;
+        "TerrainRules"?: Array<string>;
+        "WeatherRules"?: Array<string>;
+        "config"?: string;
+        "hexArray"?: { value: number; lt: number; rt: number; tt: number; lb: number; rb: number; bb: number; }[];
+        "max"?: number;
+        "mode"?: string;
+        "name"?: string;
+        "petals"?: Array<number>;
+        "start"?: number;
+        "terminal"?: number;
     }
     interface SelectBox {
         "selectId"?: string;
@@ -103,9 +147,11 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "app-characters": AppCharacters;
         "app-dungeons": AppDungeons;
+        "app-hex": AppHex;
         "app-home": AppHome;
         "app-root": AppRoot;
         "app-ship": AppShip;
+        "hex-flower": HexFlower;
         "select-box": SelectBox;
         "string-builder": StringBuilder;
     }
@@ -116,9 +162,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-characters": LocalJSX.AppCharacters & JSXBase.HTMLAttributes<HTMLAppCharactersElement>;
             "app-dungeons": LocalJSX.AppDungeons & JSXBase.HTMLAttributes<HTMLAppDungeonsElement>;
+            "app-hex": LocalJSX.AppHex & JSXBase.HTMLAttributes<HTMLAppHexElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-ship": LocalJSX.AppShip & JSXBase.HTMLAttributes<HTMLAppShipElement>;
+            "hex-flower": LocalJSX.HexFlower & JSXBase.HTMLAttributes<HTMLHexFlowerElement>;
             "select-box": LocalJSX.SelectBox & JSXBase.HTMLAttributes<HTMLSelectBoxElement>;
             "string-builder": LocalJSX.StringBuilder & JSXBase.HTMLAttributes<HTMLStringBuilderElement>;
         }

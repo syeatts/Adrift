@@ -36,9 +36,6 @@ export class StringBuilder {
 
     async componentDidRender() {
         this.buildString(undefined)
-        // await this.selectBox.getSelection();
-        // console.log(`${this.main.innerHTML}${this.appendInput()}`);
-        // this.main.innerHTML = `${this.main.innerHTML}${this.appendInput()}`;
     }
 
 
